@@ -135,7 +135,7 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         return tr;
     }
 
-    private AbstractContext context() {
+    protected AbstractContext context() {
         return (AbstractContext) request.getAttribute(ATTR_CONTEXT);
     }
 
