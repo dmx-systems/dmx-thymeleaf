@@ -17,6 +17,11 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.6.2** -- Mar 31, 2018
+
+* Added custom events for 3rd party _viewData()_ usage
+* Exposes _AbstractContext_ to 3rd party plugins
+
 **0.6.1** -- Aug 05,2016
 
 * Makes overriding template by filename across many bundle resource resolvers work as expected again
