@@ -1,9 +1,15 @@
-maven-install:
+maven-test:
+  stage: test
+  script:
+    - mvn clean package
+
+maven-build:
   stage: build
   script:
     - mvn clean install
 
-maven-release-build:
+maven-deploy:
+  stage: deploy
   script:
     - export MAVEN_OPTS='-Xmx128m'
     - mvn clean install
