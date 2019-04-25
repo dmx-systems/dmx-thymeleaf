@@ -1,7 +1,7 @@
-package de.deepamehta.thymeleaf;
+package systems.dmx.thymeleaf;
 
-import de.deepamehta.core.osgi.PluginActivator;
-import de.deepamehta.core.service.event.ServiceRequestFilterListener;
+import systems.dmx.core.osgi.PluginActivator;
+import systems.dmx.core.service.event.ServiceRequestFilterListener;
 
 import com.sun.jersey.api.view.Viewable;
 // ### TODO: hide Jersey internals. Move to JAX-RS 2.0.
@@ -37,7 +37,7 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
 
     // ------------------------------------------------------------------------------------------------------- Constants
 
-    private static String ATTR_CONTEXT = "de.deepamehta.thymeleaf.Context";
+    private static String ATTR_CONTEXT = "systems.dmx.thymeleaf.Context";
     private static String TEMPLATES_FOLDER = "/views/";
     private static String TEMPLATES_ENDING = ".html";
 

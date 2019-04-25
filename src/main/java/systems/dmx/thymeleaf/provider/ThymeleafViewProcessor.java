@@ -1,7 +1,7 @@
-package de.deepamehta.thymeleaf.provider;
+package systems.dmx.thymeleaf.provider;
 
-import de.deepamehta.thymeleaf.ThymeleafPlugin;
-import de.deepamehta.core.util.JavaUtils;
+import systems.dmx.thymeleaf.ThymeleafPlugin;
+import systems.dmx.core.util.JavaUtils;
 
 import com.sun.jersey.api.view.Viewable;
 import com.sun.jersey.spi.template.ViewProcessor;
