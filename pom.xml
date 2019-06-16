@@ -7,13 +7,13 @@
     <name>DMX Thymeleaf</name>
     <groupId>systems.dmx</groupId>
     <artifactId>dmx-thymeleaf</artifactId>
-    <version>0.7.0</version>
+    <version>0.8.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>systems.dmx</groupId>
         <artifactId>dmx-plugin</artifactId>
-        <version>5.0-beta-2</version>
+        <version>5.0-beta-4-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -57,7 +57,7 @@
                         </Bundle-Activator>
                         <Export-Package>
                             org.thymeleaf.context;version="2.1.3.RELEASE",
-                            systems.dmx.thymeleaf;version="0.7.0-SNAPSHOT"
+                            systems.dmx.thymeleaf;version="0.8.0"
                         </Export-Package>
                         <Import-Package>
                             !org.cyberneko.html, !org.apache.xerces.*, !com.sun.jdi.*, *

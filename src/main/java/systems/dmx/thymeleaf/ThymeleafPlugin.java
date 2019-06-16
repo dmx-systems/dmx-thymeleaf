@@ -1,7 +1,7 @@
 package systems.dmx.thymeleaf;
 
 import systems.dmx.core.osgi.PluginActivator;
-import systems.dmx.core.service.event.ServiceRequestFilterListener;
+import systems.dmx.core.service.event.ServiceRequestFilter;
 
 import com.sun.jersey.api.view.Viewable;
 // ### TODO: hide Jersey internals. Move to JAX-RS 2.0.
@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 // Note: although no REST service is provided the plugin is annotated as a root resource class.
 // Otherwise we can't receive JAX-RS context injections (HttpServletRequest).
 @Path("/thymeleaf")
-public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFilterListener {
+public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFilter {
 
     // ------------------------------------------------------------------------------------------------------- Constants
 
