@@ -17,6 +17,11 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.8.0** -- Upcoming
+
+* Compatible with DMX 5.0-beta-4
+* Changed license to AGPL
+
 **0.7.0** -- Apr 25, 2019
 
 * Adapted to be compatible with DMX 5.0-beta-2
