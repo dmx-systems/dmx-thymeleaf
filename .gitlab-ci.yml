@@ -27,7 +27,7 @@ copy-to-ci:
 
 # 3) Copies tags only into download.dmx.systems/plugins/ directory
 copy-to-plugins:
-  stage: deploy
+  stage: deploy-release
   artifacts:
     paths:
     - target/*.jar
