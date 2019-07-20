@@ -13,8 +13,8 @@ copy-to-ci:
   stage: deploy
   script:
     - CIDIR='/var/www/download.dmx.systems/ci'
-    - DESTDIR="${CIDIR}/${CI_PROJECT_NAME}"
     - ARTIFACT_NAME="$( basename $( ls target/*.jar | tail -n1) .jar )"
+    - DESTDIR="${CIDIR}/${ARTIFACT_NAME}"
     - NUNC="$( date +%F )"
     - DESTJARFILE="${ARTIFACT_NAME}-${NUNC}-${CI_PIPELINE_ID}.jar"
     - if [ ! -d  ${DESTDIR} ]; then mkdir ${DESTDIR}; fi
