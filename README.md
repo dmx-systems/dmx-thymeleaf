@@ -15,8 +15,7 @@ License
 
 DMX Thymeleaf is available freely under the GNU General Public License, version 3 or later.
 
-All third party components incorporated into the DMX Software are licensed under the original license provided by the owner of the applicable component.
-
+All third party components incorporated into the DMX Software are licensed under the original license provided by the owner of the applicable component. Thymeleaf 2.1.3, OGNL 3.0.6, Unbescape 1.1.3 are Apache-2.0 licensed. Java Assist 3.11.0-GA and 3.16.1-GA are MPL-1.1 licensed.
 
 Version History
 ---------------
@@ -111,7 +110,7 @@ Version History
 Authors
 -------
 
-Copyright (C) 2012-2014 Jörg Richter <jri@dmx.berlin>
-Copyright (C) 2013 Danny Gräf <github@dagnu.de>
-Copyright (C) 2015, 2016, 2018 Malte Reißig <malte@mikromedia.de>
-Copyright (C) 2019 DMX Systems <https://dmx.systems>
+Copyright (C) 2012-2014 Jörg Richter <jri@dmx.berlin><br/>
+Copyright (C) 2013 Danny Gräf <github@dagnu.de><br/>
+Copyright (C) 2015, 2016, 2018 Malte Reißig <malte@mikromedia.de><br/>
+Copyright (C) 2019 DMX Systems <https://dmx.systems><br/>
