@@ -1,17 +1,21 @@
 
-DeepaMehta 4 Thymeleaf
-======================
+DMX Thymeleaf
+=============
 
-A DeepaMehta 4 plugin for server-side HTML generation based on the Thymeleaf template engine.
+A DMX plugin for server-side HTML generation based on the Thymeleaf template engine.
 
-Simple demo application:  
-<https://github.com/jri/dm4-thymeleaf-demo>
-
-DeepaMehta 4 is a platform for collaboration and knowledge management.  
-<https://github.com/jri/deepamehta>
+DMX is a platform for collaboration and knowledge management.
+<https://git.dmx.systems/dmx-platform/dmx-platform>
 
 Thymeleaf template engine:  
 <http://www.thymeleaf.org/>
+
+License
+-------
+
+DMX Thymeleaf is available freely under the GNU General Public License, version 3 or later.
+
+All third party components incorporated into the DMX Software are licensed under the original license provided by the owner of the applicable component.
 
 
 Version History
@@ -20,7 +24,7 @@ Version History
 **0.8.0** -- Upcoming
 
 * Compatible with DMX 5.0-beta-4
-* Changed license to AGPL
+* Added GPL License to Repository
 
 **0.7.0** -- Apr 25, 2019
 
@@ -104,6 +108,10 @@ Version History
 * Compatible with DeepaMehta 4.0.13-SNAPSHOT (branch "master" or "neo4j-1.8")
 
 
-------------
-Jörg Richter & Malte Reißig<br/>
-Aug 04, 2016
+Authors
+-------
+
+Copyright (C) 2012-2014 Jörg Richter <jri@dmx.berlin>
+Copyright (C) 2013 Danny Gräf <github@dagnu.de>
+Copyright (C) 2015, 2016, 2018 Malte Reißig <malte@mikromedia.de>
+Copyright (C) 2019 DMX Systems <https://dmx.systems>
