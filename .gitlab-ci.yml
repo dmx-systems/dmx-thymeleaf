@@ -8,37 +8,37 @@ maven-build:
       - target/*.jar
     name: ${CI_PROJECT_NAME}-${CI_COMMIT_SHORT_SHA}
 
-# 2) Copies all builds into download.dmx.systems/ci/ directory
+# 2) Copies SNAPSHOT builds on 'master' and 'dm4' branch into download.dmx.systems/ci/ directory
 copy-to-ci:
   stage: deploy
   script:
     - CIDIR='/var/www/download.dmx.systems/ci'
-    - ARTIFACT_NAME="$( basename $( ls target/*.jar | tail -n1) .jar )"
     - DESTDIR="${CIDIR}/${CI_PROJECT_NAME}"
+    - JARFILE="$( basename $( ls target/*.jar | tail -n1) )"
     - NUNC="$( date +%F )"
-    - DESTJARFILE="${ARTIFACT_NAME}-${NUNC}-${CI_PIPELINE_ID}.jar"
+    - DESTJARFILE="$( basename ${JARFILE} .jar )_${NUNC}_${CI_PIPELINE_ID}.jar"
     - if [ ! -d  ${DESTDIR} ]; then mkdir ${DESTDIR}; fi
-    - cp target/${ARTIFACT_NAME}.jar ${DESTDIR}/${DESTJARFILE}
+    - cp target/${JARFILE} ${DESTDIR}/${DESTJARFILE}
+    - if [ $( echo "${DESTJARFILE}" | grep dm4 ) ]; then CI_PROJECT_NAME="$(echo ${CI_PROJECT_NAME} | sed 's/dmx/dm4/g' )"; fi
     - ln -sf  ${DESTDIR}/${DESTJARFILE} ${DESTDIR}/${CI_PROJECT_NAME}-latest.jar
-    # 2.1) Deploy artifact to dev instance automatically
-    # - docker cp -L ${CIDIR}/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}-latest.jar dmx-dev-container:/usr/share/dmx/bundle-deploy/
   dependencies:
     - maven-build
+  only:
+    - master
+    - dm4
 
-# 3) Copies tags only into download.dmx.systems/plugins/ directory
-copy-to-plugins:
+# 3) Copies tagged RELEASE builds into download.dmx.systems/plugins/ directory
+copy-to-release:
   stage: deploy
-  artifacts:
-    paths:
-    - target/*.jar
-    name: "${CI_PROJECT_NAME}-${CI_COMMIT_TAG}"
   script:
-    - CIDIR='/var/www/download.dmx.systems/plugins'
-    - DESTDIR="${CIDIR}/${CI_PROJECT_NAME}"
-    - JARFILE="$( basename $( ls target/*.jar )"
+    - RELEASEDIR='/var/www/download.dmx.systems/plugins'
+    - DESTDIR="${RELEASEDIR}/${CI_PROJECT_NAME}"
+    - JARFILE="$( basename $( ls target/*.jar | tail -n1) )"
     - if [ ! -d  ${DESTDIR} ]; then mkdir ${DESTDIR}; fi
-    - cp target/${JARFILE} ${DESTDIR}/${JARFILE}
+    - cp target/${JARFILE} ${DESTDIR}/
   dependencies:
     - maven-build
   only:
     - tags
+
+

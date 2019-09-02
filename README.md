@@ -20,6 +20,10 @@ All third party components incorporated into the DMX Thymeleaf Software are lice
 Version History
 ---------------
 
+**0.9.0** -- Aug 25, 2019
+
+* Changed LICENSE from GPL to AGPL
+
 **0.8.0** -- Jul 23, 2019
 
 * Compatible with DMX 5.0-beta-4
