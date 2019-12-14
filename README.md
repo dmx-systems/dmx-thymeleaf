@@ -20,7 +20,7 @@ All third party components incorporated into the DMX Thymeleaf Software are lice
 Version History
 ---------------
 
-**0.9.1** -- Upcoming
+**0.9.1** -- Dec 14, 2019
 
 * Compatible with DMX 5.0-beta-6
 
