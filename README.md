@@ -13,12 +13,16 @@ Thymeleaf template engine:
 License
 -------
 
-DMX Thymeleaf is available freely under the GNU General Public License, version 3 or later.
+DMX Thymeleaf is available freely under the GNU Affero General Public License, version 3 or later.
 
-All third party components incorporated into the DMX Thymeleaf Software are licensed under the original license provided by the owner of the applicable component. Thymeleaf 2.1.3, OGNL 3.0.6, Unbescape 1.1.3 are Apache-2.0 licensed. Java Assist 3.11.0-GA and 3.16.1-GA are MPL-1.1 licensed.
+All third party components used by the DMX Thymeleaf Software are licensed under the original license provided by the owner of the applicable component. Thymeleaf 2.1.3, OGNL 3.0.6, Unbescape 1.1.3 are Apache-2.0 licensed. Java Assist 3.11.0-GA and 3.16.1-GA are MPL-1.1 licensed.
 
 Version History
 ---------------
+
+**0.9.2** -- Jan 02, 2020
+
+* Compatible with DMX 5.1
 
 **0.9.1** -- Dec 14, 2019
 
