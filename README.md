@@ -28,7 +28,11 @@ All third party components used by the DMX Thymeleaf Software are licensed under
 Version History
 ---------------
 
-**0.9.2** -- Jan 03, 2020
+**0.9.3** -- Jun 30, 2021
+
+* Compatible with DMX 5.2
+
+**0.9.2** -- Jan 03, 2021
 
 * Compatible with DMX 5.1
 * Added copyright notices for dependencies
