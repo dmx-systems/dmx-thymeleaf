@@ -127,6 +127,7 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
 
     private TemplateResolver createBundleResourcesResolver(Bundle bundle, int order) {
         TemplateResolver tr = new TemplateResolver();
+        tr.setTemplateMode("XHTML");
         tr.setResourceResolver(new BundleResourcesResolver(bundle));
         tr.setOrder(order);
         tr.setPrefix(TEMPLATES_FOLDER);
