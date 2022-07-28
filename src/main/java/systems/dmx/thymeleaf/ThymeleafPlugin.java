@@ -46,7 +46,6 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     private TemplateEngine templateEngine;
     Set<Bundle> additionalTemplateResourceBundles = new HashSet<Bundle>();
 
-
     @Context private HttpServletRequest request;
     @Context private HttpServletResponse response;
     @Context private ServletContext servletContext;
