@@ -127,7 +127,12 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
 
     private TemplateResolver createBundleResourcesResolver(Bundle bundle, int order) {
         TemplateResolver tr = new TemplateResolver();
-        tr.setCharacterEncoding("UTF-8");
+        // tr.setTemplateMode("XHTML");         // Not required as XHTML is default
+        // tr.setCharacterEncoding("UTF-8");    // Not required as UTF-8 is platform default.
+        // Note: the latter is the encoding of the templates, not necessarily the encoding of the text filled in!
+        // In case the text is read from a java.util.ResourceBundle, and the resources are stored as property files
+        // (.properties), then, and only when using Java 8, these are expected to be ISO-8859-1 encoded!
+        // https://stackoverflow.com/questions/4659929/how-to-use-utf-8-in-resource-properties-with-resourcebundle
         tr.setResourceResolver(new BundleResourcesResolver(bundle));
         tr.setOrder(order);
         tr.setPrefix(TEMPLATES_FOLDER);

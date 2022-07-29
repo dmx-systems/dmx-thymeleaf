@@ -70,7 +70,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
 
     private void processTemplate(TemplateEngine templateEngine, String templateName, IContext context, OutputStream out)
                                                                                                     throws IOException {
-        Writer writer = new BufferedWriter(new OutputStreamWriter(out , "UTF-8"));
+        Writer writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
         templateEngine.process(templateName, context, writer);
         writer.flush();
     }
