@@ -102,7 +102,8 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         if (additionalTemplateResourceBundles.size() > 0) {
             logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
             for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
-                TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle, order);
+                TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle,
+                    order);
                 templateEngine.addTemplateResolver(otherTemplateResolver);
                 logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
                 order++;

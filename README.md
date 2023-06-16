@@ -28,6 +28,11 @@ All third party components used by the DMX Thymeleaf Software are licensed under
 Version History
 ---------------
 
+**0.9.4** -- Jun 16, 2023
+
+* Comment findings about java.util.ResourceBundle, .properties files, and Java 8
+* Compatible with DMX 5.3
+
 **0.9.3** -- Jun 30, 2021
 
 * Compatible with DMX 5.2
@@ -138,4 +143,4 @@ Authors
 Copyright (C) 2012-2014 Jörg Richter <jri@dmx.berlin><br/>
 Copyright (C) 2013 Danny Gräf <github@dagnu.de><br/>
 Copyright (C) 2015, 2016, 2018 Malte Reißig <malte@mikromedia.de><br/>
-Copyright (C) 2019 DMX Systems <https://dmx.systems><br/>
+Copyright (C) 2019-2023 DMX Systems <https://dmx.systems><br/>
