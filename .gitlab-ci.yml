@@ -1,44 +1,86 @@
+stages:
+  - build
+  - test
+  - deploy
+
 # 1) Build every commit on every branch and add the COMMIT SHORT SHA as suffix
 maven-build:
+  image: container-registry.dmx.systems/dmx-intern/docker-images/maven-npm-nodejs
   stage: build
+  tags:
+    - docker
   script:
-    - mvn clean install
+    - export MAVEN_OPTS='-Xmx128m'
+    - mvn clean install -DskipTests=true
   artifacts:
     paths:
-      - target/*.jar
+      - target
     name: ${CI_PROJECT_NAME}-${CI_COMMIT_SHORT_SHA}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_COMMIT_TAG != null
 
-# 2) Copies SNAPSHOT builds on 'master' and 'dm4' branch into download.dmx.systems/ci/ directory
-copy-to-ci:
-  stage: deploy
-  script:
-    - CIDIR='/var/www/download.dmx.systems/ci'
-    - DESTDIR="${CIDIR}/${CI_PROJECT_NAME}"
-    - JARFILE="$( basename $( ls target/*.jar | tail -n1) )"
-    - NUNC="$( date +%F )"
-    - DESTJARFILE="$( basename ${JARFILE} .jar )_${NUNC}_${CI_PIPELINE_ID}.jar"
-    - if [ ! -d  ${DESTDIR} ]; then mkdir ${DESTDIR}; fi
-    - cp target/${JARFILE} ${DESTDIR}/${DESTJARFILE}
-    - if [ $( echo "${DESTJARFILE}" | grep dm4 ) ]; then CI_PROJECT_NAME="$(echo ${CI_PROJECT_NAME} | sed 's/dmx/dm4/g' )"; fi
-    - ln -sf  ${DESTDIR}/${DESTJARFILE} ${DESTDIR}/${CI_PROJECT_NAME}-latest.jar
+# 2) Run SonarQube Tests
+sonarqube-check:
+  image: container-registry.dmx.systems/dmx-intern/docker-images/maven-npm-nodejs
+  stage: test
+  tags:
+    - docker
   dependencies:
     - maven-build
-  only:
-    - master
-    - dm4
-
-# 3) Copies tagged RELEASE builds into download.dmx.systems/plugins/ directory
-copy-to-release:
-  stage: deploy
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
   script:
-    - RELEASEDIR='/var/www/download.dmx.systems/plugins'
-    - DESTDIR="${RELEASEDIR}/${CI_PROJECT_NAME}"
-    - JARFILE="$( basename $( ls target/*.jar | tail -n1) )"
-    - if [ ! -d  ${DESTDIR} ]; then mkdir ${DESTDIR}; fi
-    - cp target/${JARFILE} ${DESTDIR}/
+    - mvn -Pcoverage verify sonar:sonar -Dsonar.host.url=https://sonar.dmx.systems -Dsonar.projectKey=${CI_PROJECT_NAMESPACE}_${CI_PROJECT_NAME}_${SONAR_PROJECT_KEY}
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_COMMIT_TAG != null
+
+# 3) Copies SNAPSHOT builds on 'main' and 'dm4' branch into download.dmx.systems/ci/ directory
+publish-snapshot:
+  stage: deploy
+  tags:
+    - shell
+  script:
+    - ci-publish.sh snapshot
   dependencies:
     - maven-build
-  only:
-    - tags
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'master' && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE != 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'main' && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE != 'merge_request_event'
 
+# 4) Copies tagged RELEASE builds into download.dmx.systems/plugins/ directory
+publish-release:
+  stage: deploy
+  tags:
+    - shell
+  script:
+    - ci-publish.sh release
+  dependencies:
+    - maven-build
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'master' && $CI_COMMIT_TAG != null && $CI_PIPELINE_SOURCE != 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'main' && $CI_COMMIT_TAG != null && $CI_PIPELINE_SOURCE != 'merge_request_event'
 
+# 5) Deploy into gitlab maven repository
+deploy-to-gitlab-maven:
+  image: container-registry.dmx.systems/dmx-intern/docker-images/maven-npm-nodejs
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - 'mvn -Pgitlab-maven-deployment deploy -s /usr/local/lib/ci_settings.xml'
+  rules:
+    - if: $CI_PIPELINE_SOURCE != 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'master'
+    - if: $CI_COMMIT_BRANCH == 'main'

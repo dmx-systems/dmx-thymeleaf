@@ -7,13 +7,13 @@
     <name>DMX Thymeleaf</name>
     <groupId>systems.dmx</groupId>
     <artifactId>dmx-thymeleaf</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.5-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>systems.dmx</groupId>
         <artifactId>dmx-plugin</artifactId>
-        <version>5.3</version>
+        <version>5.3.5-SNAPSHOT</version>
     </parent>
 
     <dependencies>

@@ -13,3 +13,4 @@ modules-external/
 .DS_Store
 commit-message.txt
 *.tmproj
+*.bak
